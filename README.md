@@ -1,5 +1,5 @@
 # muhammadnurarasy.github.io
-My Project
+## My Project
 # CIFAR-10 Image Classification with CNN
 Project Link: [https://drive.google.com/file/d/1-6iwOgmYgEvWSC47TGUhTVpbbG5-ITCk/view?usp=drive_link](https://colab.research.google.com/drive/1iuoAuToI4mnoXgboDd7u-xnov412ZCX8?usp=sharing)
 ## Project Overview
