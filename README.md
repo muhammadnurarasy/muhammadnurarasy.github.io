@@ -1,7 +1,7 @@
 # muhammadnurarasy.github.io
 My Project
 # CIFAR-10 Image Classification with CNN
-[https://drive.google.com/file/d/1-6iwOgmYgEvWSC47TGUhTVpbbG5-ITCk/view?usp=drive_link](https://colab.research.google.com/drive/1iuoAuToI4mnoXgboDd7u-xnov412ZCX8?usp=sharing)
+Project Link: [https://drive.google.com/file/d/1-6iwOgmYgEvWSC47TGUhTVpbbG5-ITCk/view?usp=drive_link](https://colab.research.google.com/drive/1iuoAuToI4mnoXgboDd7u-xnov412ZCX8?usp=sharing)
 ## Project Overview
 
 This project demonstrates the application of a Convolutional Neural Network (CNN) to classify images from the CIFAR-10 dataset into 10 categories: airplanes, automobiles, birds, cats, deer, dogs, frogs, horses, ships, and trucks.
@@ -37,7 +37,7 @@ The CIFAR-10 dataset consists of 60,000 32x32 color images in 10 classes, with 6
 
 1. Clone this repository:
     ```bash
-    git clone https://github.com/your-username/cifar10-image-classification.git
+    git clone https://github.com/muhammadnurarasy/cifar10-image-classification.git
     ```
 2. Install the required dependencies:
     ```bash
@@ -51,12 +51,6 @@ The CIFAR-10 dataset consists of 60,000 32x32 color images in 10 classes, with 6
     jupyter notebook cifar10_image_classification.ipynb
     ```
 2. Run the cells sequentially to load the data, build the model, train it, and evaluate its performance.
-
-## Results
-
-The model achieves an accuracy of approximately X% on the test dataset. Below is a plot showing the training and validation accuracy over epochs:
-
-![Accuracy Plot](images/accuracy_plot.png)
 
 ## Challenges and Solutions
 
@@ -118,14 +112,15 @@ def load_and_predict_image(image_path):
 # Example usage
 load_and_predict_image('path_to_your_image.jpg')
 
+
+
+
+
+
 ## Conclusion
 
 This project successfully demonstrates the use of CNNs for image classification tasks. The techniques and skills learned through this project can be applied to more complex computer vision problems.
 
-## References
-
-- [CIFAR-10 Dataset](https://www.cs.toronto.edu/~kriz/cifar.html)
-- [TensorFlow Documentation](https://www.tensorflow.org/)
 
 ## License
 
