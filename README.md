@@ -111,16 +111,11 @@ def load_and_predict_image(image_path):
 
 # Example usage
 load_and_predict_image('path_to_your_image.jpg')
-
-
-
-
-
+```
 
 ## Conclusion
 
 This project successfully demonstrates the use of CNNs for image classification tasks. The techniques and skills learned through this project can be applied to more complex computer vision problems.
-
 
 ## License
 
