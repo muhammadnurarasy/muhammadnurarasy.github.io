@@ -2,11 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
 </head>
 <body>
     <h1 id="welcome-message">Hello, Guest! Welcome to Nusantara Squid</h1>
-    <button id="logout-btn" style="display: none;">Logout</button>
+    
+    <!-- Login, Register, and Logout buttons -->
+    <button id="login-btn">Login</button>
+    <button id="register-btn">Register</button>
+    <button id="logout-btn" style="display:none;">Logout</button>
 
     <script src="https://localhost:8080/auth/js/keycloak.js"></script>
     <script>
@@ -16,17 +21,31 @@
             clientId: 'my-client' // Your client ID
         });
 
+        // Initialize Keycloak and check if the user is authenticated
         keycloak.init({ onLoad: 'check-sso' }).then(function(authenticated) {
             if (authenticated) {
-                document.getElementById('welcome-message').innerText = `Hello, ${keycloak.tokenParsed.preferred_username}!`;
+                document.getElementById('welcome-message').innerText = `Hello, ${keycloak.tokenParsed.preferred_username}! Welcome to Nusantara Squid`;
+                document.getElementById('login-btn').style.display = 'none';
+                document.getElementById('register-btn').style.display = 'none';
                 document.getElementById('logout-btn').style.display = 'block';
             } else {
-                window.location.href = 'login.html'; // Redirect to login if not authenticated
+                document.getElementById('login-btn').style.display = 'block';
+                document.getElementById('register-btn').style.display = 'block';
+                document.getElementById('logout-btn').style.display = 'none';
             }
-        }).catch(function() {
-            console.error('Failed to initialize Keycloak');
         });
 
+        // Login button event
+        document.getElementById('login-btn').addEventListener('click', function() {
+            keycloak.login();
+        });
+
+        // Register button event
+        document.getElementById('register-btn').addEventListener('click', function() {
+            keycloak.register();
+        });
+
+        // Logout button event
         document.getElementById('logout-btn').addEventListener('click', function() {
             keycloak.logout();
         });
