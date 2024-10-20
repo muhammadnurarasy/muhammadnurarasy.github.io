@@ -6,7 +6,7 @@ document.getElementById('register-form').addEventListener('submit', async functi
     const password = document.getElementById('password').value;
 
     try {
-        const response = await fetch('http://localhost:3000/register', { // Backend server URL
+        const response = await fetch('http://localhost:3000/register', { // Your backend
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -16,13 +16,14 @@ document.getElementById('register-form').addEventListener('submit', async functi
 
         if (response.ok) {
             alert('Registration successful');
-            // Redirect to login page
-            window.location.href = 'login.html';
+            window.location.href = 'login.html';  // Redirect to login
         } else {
-            alert('Registration failed');
+            const errorData = await response.json();
+            console.error('Registration failed:', errorData);
+            alert(`Registration failed: ${errorData.error}`);
         }
     } catch (error) {
         console.error('Error during registration:', error);
-        alert('An error occurred during registration');
+        alert('An error occurred during registration. Please check the console for details.');
     }
 });
