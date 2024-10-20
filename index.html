@@ -6,48 +6,43 @@
     <title>Home Page</title>
 </head>
 <body>
-    <h1 id="welcome-message">Hello, Guest! Welcome to Nusantara Squid home page</h1>
+    <h1 id="welcome-message">Hello, Guest! Welcome to Nusantara Squid</h1>
     
     <!-- Login, Register, and Logout buttons -->
     <button id="login-btn">Login</button>
     <button id="register-btn">Register</button>
     <button id="logout-btn" style="display:none;">Logout</button>
 
-    <script src="https://localhost:8080/auth/js/keycloak.js"></script>
     <script>
-        const keycloak = new Keycloak({
-            url: 'http://localhost:8080/auth',
-            realm: 'myRealm', // Your realm name
-            clientId: 'my-client' // Your client ID
-        });
+        // Check if the user is authenticated (assuming Keycloak setup is correct)
+        const isAuthenticated = false; // Change this logic to actually check authentication
 
-        // Initialize Keycloak and check if the user is authenticated
-        keycloak.init({ onLoad: 'check-sso' }).then(function(authenticated) {
-            if (authenticated) {
-                document.getElementById('welcome-message').innerText = `Hello, ${keycloak.tokenParsed.preferred_username}! Welcome to Nusantara Squid`;
-                document.getElementById('login-btn').style.display = 'none';
-                document.getElementById('register-btn').style.display = 'none';
-                document.getElementById('logout-btn').style.display = 'block';
-            } else {
-                document.getElementById('login-btn').style.display = 'block';
-                document.getElementById('register-btn').style.display = 'block';
-                document.getElementById('logout-btn').style.display = 'none';
-            }
-        });
+        // Update the page based on authentication status
+        if (isAuthenticated) {
+            document.getElementById('welcome-message').innerText = `Hello, User! Welcome to Nusantara Squid`;
+            document.getElementById('login-btn').style.display = 'none';
+            document.getElementById('register-btn').style.display = 'none';
+            document.getElementById('logout-btn').style.display = 'block';
+        } else {
+            document.getElementById('login-btn').style.display = 'block';
+            document.getElementById('register-btn').style.display = 'block';
+            document.getElementById('logout-btn').style.display = 'none';
+        }
 
-        // Login button event
+        // Login button event (redirect to login.html)
         document.getElementById('login-btn').addEventListener('click', function() {
-            keycloak.login();
+            window.location.href = 'login.html';  // Redirect to login.html
         });
 
-        // Register button event
+        // Register button event (redirect to register.html)
         document.getElementById('register-btn').addEventListener('click', function() {
-            keycloak.register();
+            window.location.href = 'register.html';  // Redirect to register.html
         });
 
-        // Logout button event
+        // Logout button event (trigger Keycloak logout if applicable)
         document.getElementById('logout-btn').addEventListener('click', function() {
-            keycloak.logout();
+            // Implement logout functionality or redirect if needed
+            alert("You are logged out!");
         });
     </script>
 </body>
