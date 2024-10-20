@@ -2,61 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
 </head>
 <body>
-    <h1 id="welcome-message">Hello, Guest!</h1>
+    <h1 id="welcome-message">Hello, Guest! Welcome to Nusantara Squid</h1>
+    <button id="logout-btn" style="display: none;">Logout</button>
 
-    <div>
-        <button id="login-btn">Login</button>
-        <button id="logout-btn" style="display:none;">Logout</button>
-    </div>
-
-    <script src="https://<keycloak-host>/auth/js/keycloak.js"></script>
+    <script src="https://localhost:8080/auth/js/keycloak.js"></script>
     <script>
-        // Initialize Keycloak with your realm and client ID
         const keycloak = new Keycloak({
-            url: 'https://<keycloak-host>/auth',
-            realm: '<realm-name>',
-            clientId: '<client-id>'
+            url: 'http://localhost:8080/auth',
+            realm: 'myRealm', // Your realm name
+            clientId: 'my-client' // Your client ID
         });
 
-        // Function to handle login
-        const handleLogin = () => {
-            keycloak.login().then(() => {
-                if (keycloak.authenticated) {
-                    document.getElementById('welcome-message').innerText = `Hello, ${keycloak.tokenParsed.preferred_username}!`;
-                    document.getElementById('login-btn').style.display = 'none';
-                    document.getElementById('logout-btn').style.display = 'block';
-                }
-            }).catch((err) => {
-                console.error('Login failed', err);
-            });
-        };
-
-        // Function to handle logout
-        const handleLogout = () => {
-            keycloak.logout().then(() => {
-                document.getElementById('welcome-message').innerText = 'Hello, Guest!';
-                document.getElementById('login-btn').style.display = 'block';
-                document.getElementById('logout-btn').style.display = 'none';
-            });
-        };
-
-        // Add event listeners for login and logout buttons
-        document.getElementById('login-btn').addEventListener('click', handleLogin);
-        document.getElementById('logout-btn').addEventListener('click', handleLogout);
-
-        // Initialize Keycloak
-        keycloak.init({ onLoad: 'check-sso' }).then((authenticated) => {
+        keycloak.init({ onLoad: 'check-sso' }).then(function(authenticated) {
             if (authenticated) {
                 document.getElementById('welcome-message').innerText = `Hello, ${keycloak.tokenParsed.preferred_username}!`;
-                document.getElementById('login-btn').style.display = 'none';
                 document.getElementById('logout-btn').style.display = 'block';
+            } else {
+                window.location.href = 'login.html'; // Redirect to login if not authenticated
             }
-        }).catch((err) => {
-            console.error('Failed to initialize Keycloak', err);
+        }).catch(function() {
+            console.error('Failed to initialize Keycloak');
+        });
+
+        document.getElementById('logout-btn').addEventListener('click', function() {
+            keycloak.logout();
         });
     </script>
 </body>
